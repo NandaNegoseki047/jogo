@@ -85,14 +85,14 @@ word_themes = {
         "facil": [
             {"palavra": "BRASIL", "dica": "Maior país da América do Sul."},
             {"palavra": "JAPÃO", "dica": "Arquipélago no leste da Ásia."},
-            {"palavra": "ITÁLIA", "dica": "País europeu conhecido por sua cultura e gastronomia."},
-            {"palavra": "EGITO", "dica": "País do norte da África conhecido por suas pirâmides."},
+            {"palavra": "ITÁLIA", "dica": "País europeu conhecido por sua gastronomia."},
+            {"palavra": "EGITO", "dica": "País conhecido por suas pirâmides."},
         ],
         "medio": [
             {"palavra": "AUSTRÁLIA", "dica": "País que também é um continente."},
             {"palavra": "CANADÁ", "dica": "País na América do Norte."},
-            {"palavra": "ARGENTINA", "dica": "País sul-americano famoso por sua carne e danças típicas."},
-            {"palavra": "ÍNDIA", "dica": "País do sul da Ásia conhecido por sua diversidade cultural."},
+            {"palavra": "ARGENTINA", "dica": "País sul-americano famoso por sua carne e danças."},
+            {"palavra": "ÍNDIA", "dica": "País da Ásia conhecido por sua diversidade cultural."},
         ],
         "dificil": [
             {"palavra": "CROÁCIA", "dica": "País europeu banhado pelo Mar Adriático."},
@@ -124,7 +124,13 @@ def draw_button(color, x, y, width, height, text, font, text_color):
     text_rect = text_surface.get_rect(center=(x + width / 2, y + height / 2))# Obtém o retângulo que envolve o texto
     screen.blit(text_surface, text_rect)# Desenha o texto do botão na tela
 
-
+# Função para desenhar o botão de dica na tela
+def draw_hint_button(screen):
+    hint_button_rect = pygame.Rect(650, 20, 100, 40)
+    pygame.draw.rect(screen, (0, 255, 0), hint_button_rect)
+    font = pygame.font.SysFont(None, 24)
+    text = font.render("Dica", True, (0, 0, 0))
+    screen.blit(text, (675, 30))
 # Função para exibir a tela inicial
 def initial_screen():
     while True:
@@ -310,7 +316,6 @@ def load_highscores():
 
 
 # Função para exibir as pontuações mais altas
-# Função para exibir as pontuações mais altas
 def show_highscores():
     highscores = load_highscores()
     highscores_sorted = sorted(highscores, key=lambda x: float(x.split(": ")[1]), reverse=True)  # Ordena as pontuações em ordem decrescente convertendo para float
@@ -417,7 +422,6 @@ def main():
             sys.exit()
 
 # Função para exibir a tela inicial
-# Função para exibir a tela inicial
 def initial_screen():
     while True:
         # Desenhar a imagem de fundo na tela
@@ -468,7 +472,6 @@ def play_game(theme):
         if not ask_play_again():
             return  # Se o jogador não quiser jogar novamente, saímos da função
 
-# Função para exibir a tela de jogo
 # Função para exibir a tela de jogo
 def play_game_screen(theme, used_words):
     while True:
